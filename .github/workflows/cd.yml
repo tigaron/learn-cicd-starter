@@ -20,3 +20,14 @@ jobs:
 
       - name: Build
         run: ./scripts/buildprod.sh
+
+      - id: Auth
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_CREDENTIALS }}
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+
+      - name: Build and push Docker image
+        run: gcloud builds submit --tag asia-southeast1-docker.pkg.dev/tokyo-unity-423521-b4/notely-bootdev/notely:latest .
