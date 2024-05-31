@@ -48,3 +48,6 @@ jobs:
 
       - name: Run staticcheck
         run: staticcheck ./...
+
+      - name: Force Failure
+        run: (exit 1)
